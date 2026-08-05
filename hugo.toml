@@ -20,8 +20,8 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.phases]]
   name = "Transports & executor"
   status = "ready"
-  blurb = "A `Transport` interface with a host-local `LocalTransport` driven through an injectable `CommandRunner` seam; an `Executor` runs a command, script or task across a set of targets, collecting a per-target `Result` into a `ResultSet`."
+  blurb = "A `Transport` interface with a host-local `LocalTransport` (injectable `CommandRunner` seam), a full pure-Go **SSH** transport (`SSHTransport`, over `golang.org/x/crypto/ssh`) and a full pure-Go **WinRM** transport (`WinRMTransport`, WS-Management over `net/http`, with `basic` / `negotiate` (NTLM) / `ssl` auth); an `Executor` runs a command, script or task across targets into a `ResultSet`."
 [[params.phases]]
-  name = "SSH / WinRM & Puppet-language plans"
-  status = "planned"
-  blurb = "Only `LocalTransport` ships (`Transport` is the extension point); SSH / WinRM transports, Puppet-language (`.pp`) plans, `apply` / `resources` steps and PuppetDB inventory references are documented deferrals."
+  name = "Puppet-language plans & apply"
+  status = "ready"
+  blurb = "Puppet-language (`.pp`) plans run through `go-puppet/puppet` (`RunPuppetPlan`), with `run_task` / `run_command` / `run_script` / `get_targets` / `apply` dispatched to real targets; `apply` blocks and the `resources` step compile a catalog and report (`ApplyCatalog`). Remote resource enforcement (needs a Puppet agent), WinRM Kerberos/CredSSP and PuppetDB `_plugin` resolvers are documented boundaries."
