@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — Puppet Bolt core in pure Go, no cgo</title>
-<meta name="description" content="go-puppet-bolt — a pure-Go (CGO_ENABLED=0) port of the core of Puppet Bolt: inventory, tasks and YAML plans run over a pluggable transport, with no Ruby runtime.">
+<meta name="description" content="go-puppet-bolt — a pure-Go (CGO_ENABLED=0) port of the core of Puppet Bolt: inventory, tasks, YAML and Puppet-language plans run over local, SSH and WinRM transports, with no Ruby runtime.">
 <style>
   :root {
     --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --card: #f6f8fa;
@@ -80,13 +80,14 @@
   <header class="wrap">
     <img class="logo" src="/img/logo.svg" alt="go-puppet-bolt logo" width="88" height="88">
     <h1>go-puppet-bolt</h1>
-    <p class="tagline">Puppet Bolt core in pure Go — inventory, tasks and YAML plans with a transport abstraction.</p>
+    <p class="tagline">Puppet Bolt core in pure Go — inventory, tasks, YAML and Puppet-language plans, and SSH / WinRM / local transports.</p>
     <div class="pills">
       <span class="pill">pure Go · zero cgo</span>
       <span class="pill">inventory v2</span>
       <span class="pill">tasks</span>
-      <span class="pill">YAML plans</span>
-      <span class="pill">transports</span>
+      <span class="pill">YAML + .pp plans</span>
+      <span class="pill">SSH / WinRM / local</span>
+      <span class="pill">apply blocks</span>
       <span class="pill">executor</span>
       <span class="pill">target queries</span>
       <span class="pill">100% coverage</span>
@@ -105,7 +106,7 @@
   </header>
 
   <main class="wrap">
-    <p class="lead">go-puppet-bolt is a pragmatic, pure-Go (<code>CGO_ENABLED=0</code>) port of the core of <strong>Puppet Bolt</strong>, the agentless orchestrator. It parses Bolt <strong>inventory</strong>, <strong>tasks</strong> and <strong>YAML plans</strong> and runs them through a <strong>pluggable transport</strong> — with no Ruby runtime and no cgo, so it cross-compiles to every 64-bit Go target and WebAssembly and links into a static binary. Inventory v2 resolves effective config / facts / vars through the group hierarchy and selects targets by name, alias, group or glob; tasks validate arguments against declared parameter types; YAML plans run an ordered sequence of task / command / script / eval / plan steps; and an <code>Executor</code> runs work across targets into a <code>ResultSet</code>. Its only dependency is the fleet's pure-Go YAML loader. 100% coverage, six arches.</p>
+    <p class="lead">go-puppet-bolt is a pragmatic, pure-Go (<code>CGO_ENABLED=0</code>) port of the core of <strong>Puppet Bolt</strong>, the agentless orchestrator. It parses Bolt <strong>inventory</strong>, <strong>tasks</strong> and <strong>plans</strong> and runs them over <strong>pluggable transports</strong> — with no Ruby runtime and no cgo, so it cross-compiles to every 64-bit Go target and WebAssembly and links into a static binary. Inventory v2 resolves effective config / facts / vars through the group hierarchy and selects targets by name, alias, group or glob; tasks validate arguments against declared parameter types; <strong>YAML plans</strong> run an ordered sequence of task / command / script / eval / plan / resources / message steps; <strong>Puppet-language (.pp) plans</strong> run through go-puppet/puppet with their plan functions dispatched to real targets; <code>apply</code> blocks compile a catalog and report; and an <code>Executor</code> runs work across targets — over a host-local, a full <strong>SSH</strong> or a full <strong>WinRM</strong> transport — into a <code>ResultSet</code>. Its non-stdlib dependencies are all pure Go. 100% coverage, six arches.</p>
 
     <section class="grid">
       {{ range .Site.Params.phases }}
@@ -120,7 +121,7 @@
       <li><span class="status active">active</span> in progress (substantial work shipped, not yet finished)</li>
       <li><span class="status planned">planned</span> not started yet (or documented deferral)</li>
     </ul>
-    <p class="principles">The Bolt orchestration engine of the go-puppet-bolt org: inventory, task and plan parsing plus a transport-abstracted executor, in pure Go with an injectable command runner. Part of the pure-Go Puppet stack alongside <a href="https://github.com/go-facter">go-facter</a>, <a href="https://github.com/go-hiera">go-hiera</a>, <a href="https://github.com/go-pcore">go-pcore</a> and <a href="https://github.com/go-puppet">go-puppet</a>.</p>
+    <p class="principles">The Bolt orchestration engine of the go-puppet-bolt org: inventory, task and plan (YAML and Puppet-language) parsing plus an executor over local, SSH and WinRM transports, in pure Go. Part of the pure-Go Puppet stack alongside <a href="https://github.com/go-facter">go-facter</a>, <a href="https://github.com/go-hiera">go-hiera</a>, <a href="https://github.com/go-pcore">go-pcore</a> and <a href="https://github.com/go-puppet">go-puppet</a>.</p>
   </main>
 
   <footer class="wrap">
