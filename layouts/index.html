@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
+<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — Puppet Bolt core in pure Go, no cgo</title>
 <meta name="description" content="go-puppet-bolt — a pure-Go (CGO_ENABLED=0) port of the core of Puppet Bolt: inventory, tasks, YAML and Puppet-language plans run over local, SSH and WinRM transports, with no Ruby runtime.">
 <style>
